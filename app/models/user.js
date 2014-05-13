@@ -4,8 +4,7 @@
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
-  , crypto = require('crypto')
-  , oAuthTypes = ['github', 'twitter', 'facebook', 'google', 'linkedin'];
+  , crypto = require('crypto');
 
 /**
  * User Schema
@@ -18,12 +17,7 @@ var UserSchema = new Schema({
   provider: { type: String, default: '' },
   hashed_password: { type: String, default: '' },
   salt: { type: String, default: '' },
-  authToken: { type: String, default: '' },
-  facebook: {},
-  twitter: {},
-  github: {},
-  google: {},
-  linkedin: {}
+  authToken: { type: String, default: '' }
 });
 
 /**
@@ -48,18 +42,18 @@ var validatePresenceOf = function (value) {
 };
 
 UserSchema.path('name').validate(function (name) {
-  if (this.doesNotRequireValidation()) return true;
+  //if (this.doesNotRequireValidation()) return true;
   return name.length
 }, 'Name cannot be blank');
 
 UserSchema.path('email').validate(function (email) {
-  if (this.doesNotRequireValidation()) return true;
+  //if (this.doesNotRequireValidation()) return true;
   return email.length
 }, 'Email cannot be blank');
 
 UserSchema.path('email').validate(function (email, fn) {
   var User = mongoose.model('User');
-  if (this.doesNotRequireValidation()) fn(true);
+  //if (this.doesNotRequireValidation()) fn(true);
 
   // Check only when it is a new user or when email field is modified
   if (this.isNew || this.isModified('email')) {
@@ -70,12 +64,12 @@ UserSchema.path('email').validate(function (email, fn) {
 }, 'Email already exists');
 
 UserSchema.path('username').validate(function (username) {
-  if (this.doesNotRequireValidation()) return true;
+  //if (this.doesNotRequireValidation()) return true;
   return username.length
 }, 'Username cannot be blank');
 
 UserSchema.path('hashed_password').validate(function (hashed_password) {
-  if (this.doesNotRequireValidation()) return true;
+  //if (this.doesNotRequireValidation()) return true;
   return hashed_password.length
 }, 'Password cannot be blank');
 
@@ -140,14 +134,6 @@ UserSchema.methods = {
     } catch (err) {
       return ''
     }
-  },
-
-  /**
-   * Validation is not required if using OAuth
-   */
-
-  doesNotRequireValidation: function() {
-    return ~oAuthTypes.indexOf(this.provider);
   }
 };
 
