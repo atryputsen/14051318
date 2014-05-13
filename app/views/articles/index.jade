@@ -1,0 +1,70 @@
+extends ../layouts/default
+
+block content
+  - if (req.isAuthenticated())
+      .container
+          - if (articles.length)
+            - each article in articles
+              .article
+                h3
+                  a(href='/articles/'+article._id, title=article.title) #{article.title}
+                p= article.body
+
+                .meta
+                  span.muted= formatDate(article.createdAt)
+
+                  - if (article.user)
+                    | &nbsp; - &nbsp;
+                    span Author &nbsp;
+
+                    - var name = article.user.name ? article.user.name : article.user.username
+
+                    a(href="/users/"+article.user._id)= name
+
+                  - if (article.tags)
+                    | &nbsp; - &nbsp;
+                    span Tags &nbsp;
+                    - each tag in article.tags.split(',')
+                      i.muted.fa.fa-tag &nbsp;
+                      a.tag(href="/tags/"+tag)= tag
+                      | &nbsp;&nbsp;
+
+            - if (pages > 1)
+              ul.pagination
+                != createPagination(pages, page)
+          - else
+            h4.muted No articles.&nbsp;
+              a(href="/articles/new") create one
+  - else
+      .jumbotron
+          .container
+              h1 wBook
+              p
+                  | Изучайте HTML, CSS, JavaScript, PHP
+                  br
+                  | и научитесь создавать потрясающие
+                  br
+                  | веб-приложений.
+              a(href='/signup', role='button').btn.btn-primary.btn-lg Начать изучение »
+      aside
+          .container
+              .row
+                  .col-md-4
+                      h3 HTML/CSS
+                      p
+                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                          | Etiam luctus nisl vel vehicula posuere.
+                          | In tincidunt dolor ante, non tempus urna imperdiet non.
+                  .col-md-4
+                      h3 JavaScript
+                      p
+                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                          | Etiam luctus nisl vel vehicula posuere.
+                          | In tincidunt dolor ante, non tempus urna imperdiet non.
+                  .col-md-4
+                      h3 PHP
+                      p
+                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                          | Etiam luctus nisl vel vehicula posuere.
+                          | In tincidunt dolor ante, non tempus urna imperdiet non.
+

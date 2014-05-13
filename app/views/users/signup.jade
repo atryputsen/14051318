@@ -1,0 +1,16 @@
+extends auth
+
+block auth
+  form(action="/users", method="post", role="form").form-signup
+    .well
+        h2.form-signin-heading Пожалуйста зарегистрируйтесь
+        .form-group
+            input#name.form-control(type='text', name="name", placeholder='ФИО', value=user.name)
+        .form-group
+            input#email.form-control(type='text', name="email", placeholder='Email', value=user.email)
+        .form-group
+            input#username.form-control(type='text', name="username", placeholder='Username', value=user.username)
+        .form-group
+            input#password.form-control(type='password', name="password", placeholder='Password')
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Зарегистрироваться
+        input(type='hidden', name='_csrf', value="#{csrf_token}")

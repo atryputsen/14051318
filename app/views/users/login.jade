@@ -1,0 +1,14 @@
+extends auth
+
+block auth
+  form(action="/users/session", method="post", role="form").form-signin
+    .well
+        h2.form-signin-heading Пожалуйста авторизируйтесь
+        input#email.form-control(type="email", placeholder="Email", name="email")
+        input#password.form-control(type="password", placeholder="Пароль", name="password")
+        label.checkbox
+            input(type='checkbox', value='remember-me')
+            span Не выходить из системы
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Войти
+        input(type='hidden', name='_csrf', value="#{csrf_token}")
+        .col-sm-offset-2.error= message
