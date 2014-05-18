@@ -1,7 +1,7 @@
-var path = require('path')
-  , rootPath = path.normalize(__dirname + '/..')
-  , templatePath = path.normalize(__dirname + '/../app/mailer/templates')
-  , notifier = {
+var path = require('path'),
+    rootPath = path.normalize(__dirname + '/..'),
+    templatePath = path.normalize(__dirname + '/../app/mailer/templates'),
+    notifier = {
       service: 'postmark',
       APN: false,
       email: false,

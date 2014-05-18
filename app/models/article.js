@@ -1,15 +1,14 @@
-
 /**
  * Module dependencies.
  */
 
-var mongoose = require('mongoose')
-  , Imager = require('imager')
-  , env = process.env.NODE_ENV || 'development'
-  , config = require('../../config/config')[env]
-  , imagerConfig = require(config.root + '/config/imager.js')
-  , Schema = mongoose.Schema
-  , utils = require('../../lib/utils');
+var mongoose = require('mongoose'),
+    Imager = require('imager'),
+    env = process.env.NODE_ENV || 'development',
+    config = require('../../config/config')[env],
+    imagerConfig = require(config.root + '/config/imager.js'),
+    Schema = mongoose.Schema,
+    utils = require('../../lib/utils');
 
 /**
  * Getters
@@ -32,21 +31,34 @@ var setTags = function (tags) {
  */
 
 var ArticleSchema = new Schema({
-  title: {type : String, default : '', trim : true},
-  body: {type : String, default : '', trim : true},
-  user: {type : Schema.ObjectId, ref : 'User'},
-  comments: [{
-    body: { type : String, default : '' },
-    user: { type : Schema.ObjectId, ref : 'User' },
-    createdAt: { type : Date, default : Date.now }
-  }],
-  tags: {type: [], get: getTags, set: setTags},
+  title: {
+      type : String,
+      default : '',
+      trim : true
+  },
+  body: {
+      type : String,
+      default : '',
+      trim : true
+  },
+  user: {
+      type : Schema.ObjectId,
+      ref : 'User'
+  },
+  tags: {
+      type: [],
+      get: getTags,
+      set: setTags
+  },
   image: {
     cdnUri: String,
     files: []
   },
-  createdAt  : {type : Date, default : Date.now}
-})
+  createdAt  : {
+      type : Date,
+      default : Date.now
+  }
+});
 
 /**
  * Validations
@@ -61,12 +73,12 @@ ArticleSchema.path('body').required(true, 'Article body cannot be blank');
 
 ArticleSchema.pre('remove', function (next) {
   var imager = new Imager(imagerConfig, 'S3');
-  var files = this.image.files
+  var files = this.image.files;
 
   // if there are files associated with the item, remove from the cloud too
   imager.remove(files, function (err) {
     if (err) return next(err)
-  }, 'article')
+  }, 'article');
 
   next()
 });
@@ -101,50 +113,8 @@ ArticleSchema.methods = {
         self.save(cb)
       }, 'article')
     })
-  },
-
-  /**
-   * Add comment
-   *
-   * @param {User} user
-   * @param {Object} comment
-   * @param {Function} cb
-   * @api private
-   */
-
-  addComment: function (user, comment, cb) {
-    var notify = require('../mailer');
-
-    this.comments.push({
-      body: comment.body,
-      user: user._id
-    });
-
-    if (!this.user.email) this.user.email = 'email@product.com';
-    notify.comment({
-      article: this,
-      currentUser: user,
-      comment: comment.body
-    });
-
-    this.save(cb)
-  },
-
-  /**
-   * Remove comment
-   *
-   * @param {commentId} String
-   * @param {Function} cb
-   * @api private
-   */
-
-  removeComment: function (commentId, cb) {
-    var index = utils.indexof(this.comments, { id: commentId });
-    if (~index) this.comments.splice(index, 1)
-    else return cb('not found')
-    this.save(cb)
   }
-}
+};
 
 /**
  * Statics

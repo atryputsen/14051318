@@ -1,27 +1,37 @@
 nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
-    .container
-        .navbar-header
-            button(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1').navbar-toggle
-                span.sr-only Toggle navigation
-                span.icon-bar
-                span.icon-bar
-                span.icon-bar
-            a.navbar-brand(href='/') wBook
-        .collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right
-                - if (req.isAuthenticated())
+    - if (req.isAuthenticated())
+        .container-fluid
+            .navbar-header
+                button(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1").navbar-toggle
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='/') wBook
+            .collapse.navbar-collapse
+                ul.nav.navbar-nav.navbar-right
                     li.dropdown
-                        a(href='#', data-toggle='dropdown').dropdown-toggle
-                            span.glyphicon.glyphicon-pencil
+                        a(href='#', data-toggle='dropdown').dropdown-toggle: span.glyphicon.glyphicon-pencil
                         ul.dropdown-menu
-                            li: a(href="/articles/new") Новый раздел
+                            li: a(href="/articles/new") Новая статья
+                            li: a(href="/") Новый курс
                     li.dropdown
-                        a(href="#", data-toggle="dropdown").dropdown-toggle
-                            span.glyphicon.glyphicon-cog
+                        a(href="#", data-toggle="dropdown").dropdown-toggle: span.glyphicon.glyphicon-cog
                         ul.dropdown-menu
                             li: a(href="/users/"+req.user.id) Профиль
-                            li.divider
+                            li: a(href="#") Настройки
                             li: a(href="/logout") Выйти
-                - else
+
+    - else
+        .container
+            .navbar-header
+                button(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1').navbar-toggle
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='/') wBook
+            .collapse.navbar-collapse
+                ul.nav.navbar-nav.navbar-right
                     li: a(href='/signup') Зарегистрироваться
                     li: a(href='/login') Войти

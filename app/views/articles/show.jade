@@ -1,11 +1,10 @@
-extends ../layouts/default
+extends ../index
 
 block content
   .container
-      h1= article.title
       .row
         .col-md-8
-          p=article.body
+          p!=article.body
           .meta
             - if (article.user)
               - var name = article.user.name ? article.user.name : article.user.username
@@ -32,9 +31,3 @@ block content
         | &nbsp;
         input(type="hidden", name="_method", value="DELETE")
         button.btn.btn-danger(type="submit") Delete
-
-      br
-      h3 Comments
-      - each comment in article.comments
-        include ../comments/comment
-      include ../comments/form

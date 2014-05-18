@@ -15,7 +15,6 @@
     "connect-flash": "latest",
     "passport": "latest",
     "passport-local": "latest",
-    "imager": "latest",
     "winston": "latest",
     "notifier": "latest",
     "async": "latest",

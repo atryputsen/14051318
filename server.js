@@ -1,13 +1,13 @@
-var express = require('express')
-  , fs = require('fs')
-  , passport = require('passport');
+var express = require('express'),
+    fs = require('fs'),
+    passport = require('passport');
 
-var env = process.env.NODE_ENV || 'development'
-  , config = require('./config/config')[env]
-  , mongoose = require('mongoose');
+var env = process.env.NODE_ENV || 'development',
+    config = require('./config/config')[env],
+    mongoose = require('mongoose');
 
 var connect = function () {
-  var options = { server: { socketOptions: { keepAlive: 1 } } }
+  var options = { server: { socketOptions: { keepAlive: 1 } } };
   mongoose.connect(config.db, options)
 };
 connect();
@@ -33,6 +33,7 @@ require('./config/routes')(app, passport);
 
 var port = process.env.PORT || 3000;
 app.listen(port);
-console.log('Express app started on port '+port);
+
+console.log('Server started on port: ' + port);
 
 exports = module.exports = app;

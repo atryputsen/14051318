@@ -1,5 +1,5 @@
-/* Sticky footer styles
--------------------------------------------------- */
+/* Sticky footer styles */
+/* -------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
@@ -15,27 +15,24 @@ footer {
     /* Set the fixed height of the footer here */
     height: 40px;
     background-color: #f5f5f5;
+    border-top: 1px solid #e7e7e7;
 }
 
 
-/* Custom page CSS
--------------------------------------------------- */
+/* Custom page CSS */
+/*-------------------------------------------------- */
 /* Not required for template or sticky footer method. */
 
-body > .container {
-    padding: 60px 15px 0;
+body > .container-fluid {
+    padding: 15px 15px 0;
 }
-.container .text-muted {
-    margin: 10px 0;
+.container-fluid .text-muted {
+    margin: 10px 0 0 0;
 }
 
-footer > .container {
+footer > .container-fluid {
     padding-right: 15px;
     padding-left: 15px;
-}
-
-code {
-    font-size: 80%;
 }
 
 .navbar {
@@ -46,6 +43,13 @@ code {
     font-size: 30px;
 }
 
+.icon-btn {
+    padding: 0 10px;
+}
+
+
+/* Jumborn */
+
 .jumbotron {
     background-image: url(../img/big-banner.jpg);
     background-size: cover;
@@ -54,6 +58,9 @@ code {
     padding: 100px 20px;
     color: #ffffff;
 }
+
+
+/* Form SignIn */
 
 .form-signin, .form-signup {
     max-width: 500px;
@@ -96,6 +103,25 @@ code {
 }
 
 /*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/*
  * Sidebar
  */
 
@@ -109,7 +135,6 @@ code {
         top: 51px;
         bottom: 0;
         left: 0;
-        z-index: 1000;
         display: block;
         padding: 20px;
         overflow-x: hidden;
@@ -117,6 +142,20 @@ code {
         background-color: #f5f5f5;
         border-right: 1px solid #eee;
     }
+}
+
+/* Sidebar User */
+.user-sidebar {
+    text-align: center;
+}
+.user-sidebar .img-avatar{
+    border: 5px solid #ccc;
+    box-shadow: 0 1px 1px #555;
+}
+
+.user-sidebar h4 {
+    margin-bottom: 0;
+    text-transform: uppercase;
 }
 
 /* Sidebar navigation */
@@ -139,15 +178,32 @@ code {
  * Main content
  */
 
-.main {
-    padding: 20px;
-}
 @media (min-width: 768px) {
     .main {
         padding-right: 40px;
         padding-left: 40px;
     }
 }
-.main {
-    margin-top: 60px;
+.main .page-header {
+    margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.placeholders h4 {
+    margin-bottom: 0;
+}
+.placeholder {
+    margin-bottom: 20px;
+}
+.placeholder img {
+    display: inline-block;
+    border-radius: 50%;
 }

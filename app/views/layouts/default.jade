@@ -4,14 +4,15 @@ html(lang='ru')
         meta(charset='utf-8')
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        title= title= pkg.name + ' - ' + title
-        link(rel='stylesheet', href='/css/jquery.tagsinput.css')
-        link(rel='stylesheet', href='/css/bootstrap.min.css')
-        link(rel='stylesheet', href='/css/main.css')
+        title= title + ' - ' + pkg.name
+
+        link(href="/css/bootstrap.css", rel="stylesheet", type="text/css")
+        link(href="/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.css", rel="stylesheet", type="text/css")
+        link(href='/css/main.css', rel='stylesheet', type="text/css")
     body
         include ../includes/header
         include ../includes/messages
         block main
-        block content
+        block component
         include ../includes/footer
         include ../includes/foot
