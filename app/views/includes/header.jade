@@ -10,16 +10,15 @@ nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
                 a.navbar-brand(href='/') wBook
             .collapse.navbar-collapse
                 ul.nav.navbar-nav.navbar-right
-                    li.dropdown
-                        a(href='#', data-toggle='dropdown').dropdown-toggle: span.glyphicon.glyphicon-pencil
-                        ul.dropdown-menu
-                            li: a(href="/articles/new") Новая статья
-                            li: a(href="/") Новый курс
+                    - if (req.user.role === 'Professor')
+                        li.dropdown
+                            a(href='#', data-toggle='dropdown').dropdown-toggle: span.glyphicon.glyphicon-pencil
+                            ul.dropdown-menu
+                                li: a(href="/articles/new") Новая статья
                     li.dropdown
                         a(href="#", data-toggle="dropdown").dropdown-toggle: span.glyphicon.glyphicon-cog
                         ul.dropdown-menu
                             li: a(href="/users/"+req.user.id) Профиль
-                            li: a(href="#") Настройки
                             li: a(href="/logout") Выйти
 
     - else

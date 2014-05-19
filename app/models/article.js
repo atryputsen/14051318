@@ -36,6 +36,11 @@ var ArticleSchema = new Schema({
       default : '',
       trim : true
   },
+  description: {
+      type: String,
+      required: true,
+      maxLength: 300
+  },
   body: {
       type : String,
       default : '',
@@ -65,6 +70,7 @@ var ArticleSchema = new Schema({
  */
 
 ArticleSchema.path('title').required(true, 'Article title cannot be blank');
+ArticleSchema.path('description').required(true, 'Article description cannot be blank');
 ArticleSchema.path('body').required(true, 'Article body cannot be blank');
 
 /**

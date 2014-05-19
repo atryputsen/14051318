@@ -1,38 +1,15 @@
 extends ../index
 
 block content
-    .container.wrapper.row-offcanvas.row-offcanvas-left
+    .container-fluid
         aside.right-side
-                - if (articles.length)
-                - each article in articles
-                    div.box.box-solid
-                        div.box-header
-                            h3.box-title
-                                a(href='/articles/'+article._id, title=article.title) #{article.title}
-                            div.box-tools.pull-right
-                                button.btn.btn-default.btn-sm(data-widget="collapse"): i.fa.fa-minus
-                                button.btn.btn-default.btn-sm(data-widget="remove"): i.fa.fa-times
-                        div.box-body
-                            p(style="overflow:hidden; height:100px;text-overflow:ellipsis;")= article.body
-                            .meta
-                                span.muted= formatDate(article.createdAt)
-
-                                - if (article.user)
-                                    | &nbsp; - &nbsp;
-                                    span Author &nbsp;
-
-                                    - var name = article.user.name ? article.user.name : article.user.username
-
-                                    a(href="/users/"+article.user._id)= name
-
-                                - if (article.tags)
-                                    | &nbsp; - &nbsp;
-                                    span Tags &nbsp;
-                                    - each tag in article.tags.split(',')
-                                        i.muted.fa.fa-tag &nbsp;
-                                        a.tag(href="/tags/"+tag)= tag
-                                        | &nbsp;&nbsp;
-                - else
-                    .callout.callout-warning
-                        h4  Извините, но публикаций нет
-                        p It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+            - if (articles.length)
+            - each article in articles
+                div.list-group
+                    a(href='/articles/'+article._id, title=article.title).list-group-item
+                        h4.list-group-item-heading #{article.title}
+                        p.list-group-item-text= article.description
+            - else
+                .callout.callout-warning
+                    h4  Извините, но публикаций нет
+                    p It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.

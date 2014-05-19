@@ -16,7 +16,7 @@ exports.load = function(req, res, next, id) {
 
   Article.load(id, function (err, article) {
     if (err) return next(err);
-    if (!article) return next(new Error('not found'))
+    if (!article) return next(new Error('Не найдено'));
     req.article = article;
     next()
   })
@@ -27,7 +27,7 @@ exports.load = function(req, res, next, id) {
  */
 
 exports.index = function(req, res){
-  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1
+  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
   var perPage = 30;
   var options = {
     perPage: perPage,
@@ -38,7 +38,7 @@ exports.index = function(req, res){
     if (err) return res.render('500');
     Article.count().exec(function (err, count) {
       res.render('articles/index', {
-        title: 'Articles',
+        title: 'Материалы',
         articles: articles,
         page: page + 1,
         pages: Math.ceil(count / perPage)
@@ -53,7 +53,7 @@ exports.index = function(req, res){
 
 exports.new = function(req, res){
   res.render('articles/new', {
-    title: 'New Article',
+    title: 'Новый материал',
     article: new Article({})
   })
 };
@@ -63,17 +63,17 @@ exports.new = function(req, res){
  */
 
 exports.create = function (req, res) {
-  var article = new Article(req.body)
+  var article = new Article(req.body);
   article.user = req.user;
 
   article.uploadAndSave(req.files.image, function (err) {
     if (!err) {
-      req.flash('success', 'Successfully created article!')
+      req.flash('success', 'Материал опубликован!');
       return res.redirect('/articles/'+article._id)
     }
 
     res.render('articles/new', {
-      title: 'New Article',
+      title: 'Новый материал',
       article: article,
       error: utils.errors(err.errors || err)
     })
@@ -86,7 +86,7 @@ exports.create = function (req, res) {
 
 exports.edit = function (req, res) {
   res.render('articles/edit', {
-    title: 'Edit ' + req.article.title,
+    title: 'Редактирование ' + req.article.title,
     article: req.article
   })
 };
@@ -105,7 +105,7 @@ exports.update = function(req, res){
     }
 
     res.render('articles/edit', {
-      title: 'Edit Article',
+      title: 'Редактирование материала',
       article: article,
       error: utils.errors(err.errors || err)
     })
@@ -130,7 +130,7 @@ exports.show = function(req, res){
 exports.destroy = function(req, res){
   var article = req.article;
   article.remove(function(err){
-    req.flash('info', 'Deleted successfully');
+    req.flash('info', 'Материал удален');
     res.redirect('/articles')
   })
 };

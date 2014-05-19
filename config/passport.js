@@ -24,10 +24,10 @@ module.exports = function (passport, config) {
       User.findOne({ email: email }, function (err, user) {
         if (err) { return done(err) }
         if (!user) {
-          return done(null, false, { message: 'Unknown user' })
+          return done(null, false, { message: 'Пользователь не найден' })
         }
         if (!user.authenticate(password)) {
-          return done(null, false, { message: 'Invalid password' })
+          return done(null, false, { message: 'Неверный пароль' })
         }
         return done(null, user)
       })

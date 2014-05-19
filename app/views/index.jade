@@ -6,14 +6,14 @@ block main
         .row
             .col-sm-3.col-md-2.sidebar
                 .user-sidebar
-                    //- var name = user.name ? user.name : user.username
-                    img(src="/img/avatar.jpg", alt="avatar", width="100").img-circle.img-avatar
-                    h4 Алексей Белоус
-                    div Студент, T-095
+                    - var name = req.user.name ? req.user.name : req.user.username
+                    - var avatar = req.user.avatar ? req.user.avatar : "/img/no-avatar.jpg"
+                    a(href="/users/" + req.user.id): img(src="#{avatar}", alt="avatar", width="100").img-circle.img-avatar
+                    h4= name
+                    div= req.user.role + ', ' + req.user.group
                 hr
-                ul.nav.nav-sidebar
-                    li: a(href="/articles") Курсы
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+                include includes/messages
                 h1.page-header= title
                 block content
 
@@ -33,19 +33,10 @@ block main
               .row
                   .col-md-4
                       h3 HTML/CSS
-                      p
-                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          | Etiam luctus nisl vel vehicula posuere.
-                          | In tincidunt dolor ante, non tempus urna imperdiet non.
+                      p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
                   .col-md-4
                       h3 JavaScript
-                      p
-                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          | Etiam luctus nisl vel vehicula posuere.
-                          | In tincidunt dolor ante, non tempus urna imperdiet non.
+                      p JavaScript — это интерпретируемый, объектно-ориентированный, кросс-платформенный язык. Он более известен как язык скриптов для веб-страниц, но используется и в других программных продуктах, например node.js.
                   .col-md-4
                       h3 PHP
-                      p
-                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                          | Etiam luctus nisl vel vehicula posuere.
-                          | In tincidunt dolor ante, non tempus urna imperdiet non.
+                      p PHP - Hypertext Preprocessor — первоначально Personal Home Page Tools — скриптовый язык программирования общего назначения, интенсивно применяемый для разработки веб-приложений.

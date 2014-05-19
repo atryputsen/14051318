@@ -8,10 +8,11 @@ html(lang='ru')
 
         link(href="/css/bootstrap.css", rel="stylesheet", type="text/css")
         link(href="/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.css", rel="stylesheet", type="text/css")
-        link(href='/css/main.css', rel='stylesheet', type="text/css")
+        link(href="/css/main.css", rel="stylesheet", type="text/css")
     body
         include ../includes/header
-        include ../includes/messages
+        - if (req.isAuthenticated() === false)
+            include ../includes/messages
         block main
         block component
         include ../includes/footer

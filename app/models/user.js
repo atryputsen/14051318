@@ -19,9 +19,17 @@ var UserSchema = new Schema({
       type: String,
       default: ''
   },
-  username: {
+  avatar: {
+    type: String,
+    default: ''
+  },
+  group: {
       type: String,
       default: ''
+  },
+  role: {
+      type: String,
+      default: 'Student'
   },
   provider: {
       type: String,
@@ -33,7 +41,8 @@ var UserSchema = new Schema({
   },
   salt: {
       type: String,
-      default: '' },
+      default: ''
+  },
   authToken: {
       type: String,
       default: ''
@@ -63,11 +72,11 @@ var validatePresenceOf = function (value) {
 
 UserSchema.path('name').validate(function (name) {
   return name.length
-}, 'Name cannot be blank');
+}, 'Имя не было введено');
 
 UserSchema.path('email').validate(function (email) {
   return email.length
-}, 'Email cannot be blank');
+}, 'Email не был введен');
 
 UserSchema.path('email').validate(function (email, fn) {
   var User = mongoose.model('User');
@@ -80,13 +89,13 @@ UserSchema.path('email').validate(function (email, fn) {
   } else fn(true)
 }, 'Email already exists');
 
-UserSchema.path('username').validate(function (username) {
-  return username.length
-}, 'Username cannot be blank');
+UserSchema.path('group').validate(function (group) {
+  return group.length
+}, 'Номер группы введен не был');
 
 UserSchema.path('hashed_password').validate(function (hashed_password) {
   return hashed_password.length
-}, 'Password cannot be blank');
+}, 'Пароль введен не был');
 
 
 /**
@@ -98,7 +107,7 @@ UserSchema.pre('save', function(next) {
 
   if (!validatePresenceOf(this.password)
     && !this.doesNotRequireValidation())
-    next(new Error('Invalid password'));
+    next(new Error('Неверный пароль'));
   else
     next()
 });
