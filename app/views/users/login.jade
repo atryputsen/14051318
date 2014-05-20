@@ -1,11 +1,29 @@
 extends auth
 
 block form
-  form(action="/users/session", method="post", role="form").form-signin
-    .well
-        h2.form-signin-heading Пожалуйста авторизируйтесь
-        input#email.form-control(type="email", placeholder="Email", name="email")
-        input#password.form-control(type="password", placeholder="Пароль", name="password")
-        button.btn.btn-lg.btn-primary.btn-block(type='submit') Войти
-        input(type='hidden', name='_csrf', value="#{csrf_token}")
-        .col-sm-offset-2.error= message
+      .well.form-signin
+          div.panel.panel-default
+            div.panel-body
+                h3.thin.text-center Авторизация
+                p.text-center.text-muted Lorem ipsum dolor sit amet, <a href="signup">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio.
+                hr
+
+                form(action="/users/session", method="post", role="form")
+                    div.form-group
+                        label Email <span class="text-danger">*</span>
+                        div.input-group
+                            input#validate-email.form-control(type="email", placeholder="Email", name="email", required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.form-group
+                        label Пароль <span class="text-danger">*</span>
+                        div.input-group
+                            input#password-validate.form-control(type="password", placeholder="Пароль", name="password", required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    hr
+                    div.row
+                        div.col-lg-8
+                            b: a(href="") Forgot password?
+                        div.col-lg-4.text-right
+                            button(type="submit", disabled).btn.btn-action Войти
+                            input(type='hidden', name='_csrf', value="#{csrf_token}")
+                            .col-sm-offset-2.error= message

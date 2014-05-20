@@ -2,24 +2,50 @@ extends ../index
 
 block content
     div.row
-        div.col-md-4
-            div.thumbnail
-                div.caption
-                    h3 HTML & CSS
-                    p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
-                    p
-                        a(href="/tags/HTML%20&%20CSS", role="button").btn.btn-primary Начать изучение
-        div.col-md-4
-            div.thumbnail
-                div.caption
-                    h3 JavaScript
-                    p JavaScript — это интерпретируемый, объектно-ориентированный, кросс-платформенный язык. Он более известен как язык скриптов для веб-страниц, но используется и в других программных продуктах, например node.js.
-                    p
-                        a(href="/tags/JavaScript", role="button").btn.btn-primary Начать изучение
-        div.col-md-4
-            div.thumbnail
-                div.caption
-                    h3 PHP
-                    p PHP - Hypertext Preprocessor —  первоначально Personal Home Page Tools  — скриптовый язык программирования общего назначения, интенсивно применяемый для разработки веб-приложений.
-                    p
-                        a(href="/tags/php", role="button").btn.btn-primary Начать изучение
+        ul.thumbnails.list-unstyled
+            li.col-md-4
+                a(href="/tags/HTML%20&%20CSS", role="button")
+                    div.thumbnail
+                        img(alt="HTML5 & CSS", src="/img/html5.png", style="height: 150px;")
+                        div.caption
+                            h2 HTML & CSS
+                            p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
+                        div.modal-footer(style="text-align: left")
+                            div.progress
+                                div.progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style="width: 96%;")
+                                    span.sr-only 96% Complete
+                            div.row
+                                div.col-md-4 <b>60%</b><br/><small>ИЗУЧЕНО</small>
+                                div.col-md-4 <b>20</b><br/><small>СТАТЕЙ</small>
+                                div.col-md-4 <b>21 MAY</b><br/><small>ОБНОВЛЕНО</small>
+
+            li.col-md-4
+                a(href="/tags/JavaScript", role="button")
+                    div.thumbnail
+                        img(alt="JavaScript", src="/img/js.png", style="height: 150px;")
+                        div.caption
+                            h2 JavaScript
+                            p JavaScript — это интерпретируемый, объектно-ориентированный, кросс-платформенный язык. Он более известен как язык скриптов для веб-страниц, но используется и в других программных продуктах, например node.js.
+                        div.modal-footer(style="text-align: left")
+                            div.progress
+                                div.progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style="width: 54%;")
+                                    span.sr-only 84% Complete
+                            div.row
+                                div.col-md-4 <b>60%</b><br/><small>ИЗУЧЕНО</small>
+                                div.col-md-4 <b>20</b><br/><small>СТАТЕЙ</small>
+                                div.col-md-4 <b>21 MAY</b><br/><small>ОБНОВЛЕНО</small>
+            li.col-md-4
+                a(href="/tags/php", role="button")
+                    div.thumbnail
+                        img(alt="JavaScript", src="/img/php.png", style="height: 150px;")
+                        div.caption
+                            h2 PHP
+                            p PHP - Hypertext Preprocessor —  первоначально Personal Home Page Tools  — скриптовый язык программирования общего назначения, интенсивно применяемый для разработки веб-приложений.
+                        div.modal-footer(style="text-align: left")
+                            div.progress
+                                div.progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style="width: 24%;")
+                                    span.sr-only 24% Complete
+                            div.row
+                                div.col-md-4 <b>60%</b><br/><small>ИЗУЧЕНО</small>
+                                div.col-md-4 <b>20</b><br/><small>СТАТЕЙ</small>
+                                div.col-md-4 <b>21 MAY</b><br/><small>ОБНОВЛЕНО</small>

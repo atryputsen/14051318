@@ -1,7 +1,7 @@
 {
   "name": "wBook",
   "description": "wBook is an online learning platform that teaches a variety of programming and web design skills. Courses range from beginner to advanced levels and you get to earn rewards and badges as you learn.",
-  "version": "0.8.0",
+  "version": "0.8.5",
   "private": false,
   "engines": {
     "node": "0.10.x",

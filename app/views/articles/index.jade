@@ -4,11 +4,30 @@ block content
     .container-fluid
         aside.right-side
             - if (articles.length)
-            - each article in articles
-                div.list-group
-                    a(href='/articles/'+article._id, title=article.title).list-group-item
-                        h4.list-group-item-heading #{article.title}
-                        p.list-group-item-text= article.description
+                ul.timeline
+                    - var count = 0;
+                    - each article in articles
+                        - count++;
+                        - if(count % 2 === 0)
+                            li.timeline-inverted
+                                div.timeline-badge: i.glyphicon.glyphicon-file
+                                div.timeline-panel
+                                    div.timeline-heading
+                                        h4.timeline-title: a(href='/articles/'+article._id, title=article.title) #{article.title}
+                                        p
+                                            small.text-muted: i.fa.fa-time </i> #{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}</small>
+                                        div.timeline-body
+                                            p= article.description
+                        - else
+                            li
+                                div.timeline-badge: i.glyphicon.glyphicon-file
+                                div.timeline-panel
+                                    div.timeline-heading
+                                        h4.timeline-title: a(href='/articles/'+article._id, title=article.title) #{article.title}
+                                        p
+                                            small.text-muted: i.fa.fa-time </i> #{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}</small>
+                                        div.timeline-body
+                                            p= article.description
             - else
                 .callout.callout-warning
                     h4  Извините, но публикаций нет

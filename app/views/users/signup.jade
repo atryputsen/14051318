@@ -1,16 +1,46 @@
 extends auth
 
 block form
-  form(action="/users", method="post", role="form").form-signup
-    .well
-        h2.form-signin-heading Пожалуйста зарегистрируйтесь
-        .form-group
-            input#name.form-control(type='text', name="name", placeholder='ФИО', value=user.name)
-        .form-group
-            input#email.form-control(type='text', name="email", placeholder='Email', value=user.email)
-        .form-group
-            input#username.form-control(type='text', name="group", placeholder='Номер группы', value=user.group)
-        .form-group
-            input#password.form-control(type='password', name="password", placeholder='Пароль')
-        button.btn.btn-lg.btn-primary.btn-block(type='submit') Зарегистрироваться
-        input(type='hidden', name='_csrf', value="#{csrf_token}")
+    .well.form-signup
+        div.panel.panel-default
+            div.panel-body
+                h3.thin.text-center Регистрация нового аккаунта
+                p.text-center.text-muted Lorem ipsum dolor sit amet, <a href="signin.html">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio.
+                hr
+
+                form(action="/users", method="post", role="form")
+                    div.form-group
+                        label(for="firstname") Ваше Имя <span class="text-danger">*</span>
+                        div.input-group
+                            input#validate-text.form-control(type='text', name="firstname", placeholder='Имя', value=user.name, required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.form-group
+                        label Фамилия <span class="text-danger">*</span>
+                        div.input-group
+                            input#validate-text.form-control(type='text', name="lastname", placeholder='Фамилия', value=user.name, required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.form-group
+                        label Email <span class="text-danger">*</span>
+                        div.input-group
+                            input#validate-email.form-control(type='email', name="email", placeholder='Email', value=user.email, required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.row.top-margin
+                        div.col-sm-6
+                            label Пароль <span class="text-danger">*</span>
+                            div.input-group
+                                input#password.form-control(type='password', name="password", placeholder='Пароль', required)
+                                span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                        div.col-sm-6
+                            label Повторите пароль <span class="text-danger">*</span>
+                            div.input-group
+                                input#password.form-control(type='password', name="password", placeholder='Пароль', required)
+                                span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    hr
+                    div.row
+                        div.col-lg-6
+                            label.checkbox
+                                input(type="checkbox")
+                                | Согласен с <a href="page_terms.html">правилами</a>
+                        div.col-lg-6.text-right
+                            button.btn.btn-action(type='submit', disabled) Зарегистрироваться
+                            input(type='hidden', name='_csrf', value="#{csrf_token}")
