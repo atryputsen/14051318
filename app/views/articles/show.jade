@@ -7,9 +7,8 @@ block content
           p!=article.body
           blockquote.blockquote-reverse
             - if (article.user)
-              - var name = article.user.name ? article.user.name : article.user.username
               p Автор:&nbsp;
-                a(href="/users/"+article.user._id)= name
+                a(href="/users/"+article.user._id)= article.user.firstname + ' ' + article.user.lastname
             - if (article.tags)
               p Теги:&nbsp;
                 - each tag in article.tags.split(',')
@@ -18,7 +17,6 @@ block content
                   | &nbsp;&nbsp;
 
             p.muted= formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
-              - if (req.isAuthenticated() && req.user.role === 'Professor')
                   form(action="/articles/"+article.id, method="post", onsubmit="return confirm('Are you sure?')")
                     input(type='hidden', name='_csrf', value="#{csrf_token}")
                     a.btn.btn-default(href='/articles/'+article._id+'/edit', title="edit") Редактировать

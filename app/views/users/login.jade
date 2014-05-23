@@ -11,7 +11,7 @@ block form
                 form(action="/users/session", method="post", role="form")
                     div.form-group
                         label Email <span class="text-danger">*</span>
-                        div.input-group
+                        div(data-validate="email").input-group
                             input#validate-email.form-control(type="email", placeholder="Email", name="email", required)
                             span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                     div.form-group
@@ -22,7 +22,7 @@ block form
                     hr
                     div.row
                         div.col-lg-8
-                            b: a(href="") Forgot password?
+                            b: a(href="#") Забыли пароль?
                         div.col-lg-4.text-right
                             button(type="submit", disabled).btn.btn-action Войти
                             input(type='hidden', name='_csrf', value="#{csrf_token}")

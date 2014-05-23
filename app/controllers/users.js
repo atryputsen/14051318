@@ -26,7 +26,7 @@ exports.authCallback = login;
 
 exports.login = function (req, res) {
   res.render('users/login', {
-    title: 'Login',
+    title: 'Авторизация',
     message: req.flash('error')
   })
 };
@@ -37,7 +37,7 @@ exports.login = function (req, res) {
 
 exports.signup = function (req, res) {
   res.render('users/signup', {
-    title: 'Sign up',
+    title: 'Регистрация',
     user: new User()
   })
 };
@@ -69,7 +69,7 @@ exports.create = function (req, res) {
       return res.render('users/signup', {
         error: utils.errors(err.errors),
         user: user,
-        title: 'Sign up'
+        title: 'Регистрация'
       })
     }
 
@@ -88,7 +88,7 @@ exports.create = function (req, res) {
 exports.show = function (req, res) {
   var user = req.profile;
   res.render('users/show', {
-    title: user.name,
+    title: user.firstname + ' ' + user.lastname,
     user: user
   })
 };
@@ -102,7 +102,7 @@ exports.user = function (req, res, next, id) {
     .findOne({ _id : id })
     .exec(function (err, user) {
       if (err) return next(err);
-      if (!user) return next(new Error('Failed to load User ' + id));
+      if (!user) return next(new Error('Не удалось загрузить пользователя ' + id));
       req.profile = user;
       next()
     })

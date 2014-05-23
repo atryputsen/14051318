@@ -69,9 +69,9 @@ var ArticleSchema = new Schema({
  * Validations
  */
 
-ArticleSchema.path('title').required(true, 'Article title cannot be blank');
-ArticleSchema.path('description').required(true, 'Article description cannot be blank');
-ArticleSchema.path('body').required(true, 'Article body cannot be blank');
+ArticleSchema.path('title').required(true, 'Название статьи не может быть пустым');
+ArticleSchema.path('description').required(true, 'Описание cтатьи не может быть пустым');
+ArticleSchema.path('body').required(true, 'Материал не может быть пустым');
 
 /**
  * Pre-remove hook

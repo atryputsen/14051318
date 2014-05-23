@@ -5,35 +5,41 @@ block form
         div.panel.panel-default
             div.panel-body
                 h3.thin.text-center Регистрация нового аккаунта
-                p.text-center.text-muted Lorem ipsum dolor sit amet, <a href="signin.html">Login</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio.
+                p.text-center.text-muted Мы рады видеть вас на проекте. Если вы уже зарегистрированы в системе, то вам нужно <a href="login">Авторизироваться</a>. Если вы впервые, то вы должны пройти процесс регистрации заполнив форму ниже.
                 hr
 
                 form(action="/users", method="post", role="form")
+                    div.row.form-group
+                        div.col-sm-6
+                            label(for="firstname") Ваше Имя <span class="text-danger">*</span>
+                            div(data-validate="length", data-length="3").input-group
+                                input#validate-text.form-control(type='text', name="firstname", placeholder='Имя', value=user.firstname, required)
+                                span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                        div.col-sm-6
+                            label Фамилия <span class="text-danger">*</span>
+                            div(data-validate="length", data-length="3").input-group
+                                input#validate-text.form-control(type='text', name="lastname", placeholder='Фамилия', value=user.lastname, required)
+                                span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                     div.form-group
-                        label(for="firstname") Ваше Имя <span class="text-danger">*</span>
-                        div.input-group
-                            input#validate-text.form-control(type='text', name="firstname", placeholder='Имя', value=user.name, required)
-                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
-                    div.form-group
-                        label Фамилия <span class="text-danger">*</span>
-                        div.input-group
-                            input#validate-text.form-control(type='text', name="lastname", placeholder='Фамилия', value=user.name, required)
+                        label Номер группы: <span class="text-danger">*</span>
+                        div(data-validate="length", data-length="4").input-group
+                            input#validate-email.form-control(type='text', name="group", placeholder='Номер группы', value=user.group, required)
                             span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                     div.form-group
                         label Email <span class="text-danger">*</span>
-                        div.input-group
+                        div(data-validate="email").input-group
                             input#validate-email.form-control(type='email', name="email", placeholder='Email', value=user.email, required)
                             span.input-group-addon.danger: span.glyphicon.glyphicon-remove
-                    div.row.top-margin
+                    div.row.form-group
                         div.col-sm-6
                             label Пароль <span class="text-danger">*</span>
-                            div.input-group
+                            div(data-validate="length", data-length="6").input-group
                                 input#password.form-control(type='password', name="password", placeholder='Пароль', required)
                                 span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                         div.col-sm-6
                             label Повторите пароль <span class="text-danger">*</span>
-                            div.input-group
-                                input#password.form-control(type='password', name="password", placeholder='Пароль', required)
+                            div(data-validate="length", data-length="6").input-group
+                                input#password.form-control(type='password', name="repeat-password", placeholder='Пароль', required)
                                 span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                     hr
                     div.row

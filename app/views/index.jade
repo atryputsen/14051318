@@ -6,10 +6,9 @@ block main
         .row
             .col-sm-3.col-md-2.sidebar
                 .user-sidebar
-                    - var name = req.user.name ? req.user.name : req.user.username
                     - var avatar = req.user.avatar ? req.user.avatar : "/img/no-avatar.jpg"
                     a(href="/users/" + req.user.id): img(src="#{avatar}", alt="avatar", width="100").img-circle.img-avatar
-                    h4= name
+                    h4= req.user.firstname + ' ' + req.user.lastname
                     div= req.user.role + ', ' + req.user.group
                 hr
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main

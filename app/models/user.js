@@ -11,7 +11,11 @@ var mongoose = require('mongoose'),
  */
 
 var UserSchema = new Schema({
-  name: {
+  firstname: {
+      type: String,
+      default: ''
+  },
+  lastname: {
       type: String,
       default: ''
   },
@@ -70,9 +74,17 @@ var validatePresenceOf = function (value) {
   return value && value.length
 };
 
-UserSchema.path('name').validate(function (name) {
-  return name.length
+UserSchema.path('firstname').validate(function (firstname) {
+  return firstname.length
 }, 'Имя не было введено');
+
+UserSchema.path('lastname').validate(function (lastname) {
+    return lastname.length
+}, 'Фамилия не была введена' );
+
+UserSchema.path('group').validate(function (group) {
+    return group.length
+}, 'Номер группы не был введен' );
 
 UserSchema.path('email').validate(function (email) {
   return email.length
@@ -81,22 +93,16 @@ UserSchema.path('email').validate(function (email) {
 UserSchema.path('email').validate(function (email, fn) {
   var User = mongoose.model('User');
 
-  // Check only when it is a new user or when email field is modified
   if (this.isNew || this.isModified('email')) {
     User.find({ email: email }).exec(function (err, users) {
       fn(!err && users.length === 0)
     })
   } else fn(true)
-}, 'Email already exists');
-
-UserSchema.path('group').validate(function (group) {
-  return group.length
-}, 'Номер группы введен не был');
+}, 'Введенны Email уже зарегистрированн в системе');
 
 UserSchema.path('hashed_password').validate(function (hashed_password) {
   return hashed_password.length
-}, 'Пароль введен не был');
-
+}, 'Вы не ввели пароль');
 
 /**
  * Pre-save hook
