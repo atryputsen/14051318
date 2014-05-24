@@ -8,26 +8,35 @@ block content
                     - var count = 0;
                     - each article in articles
                         - count++;
-                        - if(count % 2 === 0)
-                            li.timeline-inverted
-                                div.timeline-badge: i.glyphicon.glyphicon-file
-                                div.timeline-panel
-                                    div.timeline-heading
-                                        h4.timeline-title: a(href='/articles/'+article._id, title=article.title) #{article.title}
-                                        p
-                                            small.text-muted: i.fa.fa-time </i> #{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}</small>
-                                        div.timeline-body
-                                            p= article.description
-                        - else
+                        - if (count % 2 !== 0)
                             li
-                                div.timeline-badge: i.glyphicon.glyphicon-file
+                                div.timeline-badge.primary
+                                    a: i.glyphicon.glyphicon-record(rel='tooltip', title='#{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}')
                                 div.timeline-panel
-                                    div.timeline-heading
-                                        h4.timeline-title: a(href='/articles/'+article._id, title=article.title) #{article.title}
-                                        p
-                                            small.text-muted: i.fa.fa-time </i> #{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}</small>
-                                        div.timeline-body
-                                            p= article.description
+                                    //div.timeline-heading
+                                        img.img-responsive(src='http://lorempixel.com/1600/500/sports/2')
+                                    div.timeline-body
+                                        h4: a(href='/articles/'+article._id, title=article.title)= article.title
+                                        p= article.description
+                                    div.timeline-footer
+                                        a: i.glyphicon.glyphicon-thumbs-up
+                                        a(href='/articles/'+article._id, title=article.title).pull-right Подробнее
+                        - else
+                            li.timeline-inverted
+                                div.timeline-badge.primary
+                                    a: i.glyphicon.glyphicon-record(rel='tooltip', title='#{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}')
+                                div.timeline-panel
+                                    //div.timeline-heading
+                                        img.img-responsive(src='http://lorempixel.com/1600/500/sports/2')
+                                    div.timeline-body
+                                        h4: a(href='/articles/'+article._id, title=article.title)= article.title
+                                        p= article.description
+                                    div.timeline-footer
+                                        a: i.glyphicon.glyphicon-thumbs-up
+                                        a(href='/articles/'+article._id, title=article.title).pull-right Подробнее
+                        - if (count === articles.length)
+                            li.clearfix(style='float: none;')
+
             - else
                 .callout.callout-warning
                     h4  Извините, но публикаций нет

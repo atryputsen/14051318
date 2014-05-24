@@ -2,50 +2,42 @@ extends ../index
 
 block content
     div.row
-        ul.thumbnails.list-unstyled
-            li.col-md-4
-                a(href="/tags/HTML%20&%20CSS", role="button")
-                    div.thumbnail
-                        img(alt="HTML5 & CSS", src="/img/html5.png", style="height: 150px;")
-                        div.caption
-                            h2 HTML & CSS
-                            p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
-                        div.modal-footer(style="text-align: left")
-                            div.progress
-                                div.progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style="width: 96%;")
-                                    span.sr-only 96% Complete
-                            div.row
-                                div.col-md-4 <b>60%</b><br/><small>ИЗУЧЕНО</small>
-                                div.col-md-4 <b>20</b><br/><small>СТАТЕЙ</small>
-                                div.col-md-4 <b>21 MAY</b><br/><small>ОБНОВЛЕНО</small>
-
-            li.col-md-4
-                a(href="/tags/JavaScript", role="button")
-                    div.thumbnail
-                        img(alt="JavaScript", src="/img/js.png", style="height: 150px;")
-                        div.caption
-                            h2 JavaScript
-                            p JavaScript — это интерпретируемый, объектно-ориентированный, кросс-платформенный язык. Он более известен как язык скриптов для веб-страниц, но используется и в других программных продуктах, например node.js.
-                        div.modal-footer(style="text-align: left")
-                            div.progress
-                                div.progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style="width: 54%;")
-                                    span.sr-only 84% Complete
-                            div.row
-                                div.col-md-4 <b>60%</b><br/><small>ИЗУЧЕНО</small>
-                                div.col-md-4 <b>20</b><br/><small>СТАТЕЙ</small>
-                                div.col-md-4 <b>21 MAY</b><br/><small>ОБНОВЛЕНО</small>
-            li.col-md-4
-                a(href="/tags/php", role="button")
-                    div.thumbnail
-                        img(alt="JavaScript", src="/img/php.png", style="height: 150px;")
-                        div.caption
-                            h2 PHP
-                            p PHP - Hypertext Preprocessor —  первоначально Personal Home Page Tools  — скриптовый язык программирования общего назначения, интенсивно применяемый для разработки веб-приложений.
-                        div.modal-footer(style="text-align: left")
-                            div.progress
-                                div.progress-bar(role="progressbar", aria-valuenow="60", aria-valuemin="0", aria-valuemax="100", style="width: 24%;")
-                                    span.sr-only 24% Complete
-                            div.row
-                                div.col-md-4 <b>60%</b><br/><small>ИЗУЧЕНО</small>
-                                div.col-md-4 <b>20</b><br/><small>СТАТЕЙ</small>
-                                div.col-md-4 <b>21 MAY</b><br/><small>ОБНОВЛЕНО</small>
+        div.col-xs-12.col-sm-6.col-lg-4
+            div.box
+                div.icon
+                    div.image
+                        img(alt="JavaScript", src="/img/html5.png", style="height: 50px; margin-top: -20px;")
+                    div.info
+                        h3.title HTML/CSS
+                        p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
+                        div.more
+                            a(href='/tags/HTML%20&%20CSS', title='Title Link')
+                                | Начать изучение
+                                i.fa.fa-angle-double-right
+                div.space
+        div.col-xs-12.col-sm-6.col-lg-4
+            div.box
+                div.icon
+                    div.image
+                        img(alt="JavaScript", src="/img/js.png", style="height: 50px; margin-top: -20px;")
+                    div.info
+                        h3.title JavaScript
+                        p JavaScript — это интерпретируемый, объектно-ориентированный, кросс-платформенный язык. Он более известен как язык скриптов для веб-страниц, но используется и в других программных продуктах, например node.js.
+                        div.more
+                            a(href='/tags/JavaScript', title='Title Link')
+                                | Начать изучение
+                                i.fa.fa-angle-double-right
+                div.space
+        div.col-xs-12.col-sm-6.col-lg-4
+            div.box
+                div.icon
+                    div.image
+                        img(alt="JavaScript", src="/img/html5.png", style="height: 50px; margin-top: -20px;")
+                    div.info
+                        h3.title PHP
+                        p PHP - Hypertext Preprocessor —  первоначально Personal Home Page Tools  — скриптовый язык программирования общего назначения, интенсивно применяемый для разработки веб-приложений.
+                        div.more
+                            a(href='/tags/php', title='Title Link')
+                                | Начать изучение
+                                i.fa.fa-angle-double-right
+                div.space

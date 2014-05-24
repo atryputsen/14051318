@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
 
 exports.index = function (req, res) {
   var criteria = { tags: req.param('tag') };
-  var perPage = 5;
+  var perPage = 30;
   var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
   var options = {
     perPage: perPage,
