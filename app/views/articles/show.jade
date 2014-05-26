@@ -8,18 +8,19 @@ block content
           blockquote.blockquote-reverse
             - if (article.user)
               p Автор:&nbsp;
-                a(href="/users/"+article.user._id)= article.user.firstname + ' ' + article.user.lastname
+                a(href="/users/"+article.user._id)= article.user.firstname + ' ' + article.user.lastname + ', '
+                span.muted= formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
             - if (article.tags)
               p Теги:&nbsp;
                 - each tag in article.tags.split(',')
                   i.muted.fa.fa-tag &nbsp;
                   a.tag(href="/tags/"+tag)= tag
                   | &nbsp;&nbsp;
+              form(action="/articles/"+article.id, method="post", onsubmit="return confirm('Вы уверен?')")
+                input(type='hidden', name='_csrf', value="#{csrf_token}")
+                a.btn.btn-default(href='/articles/'+article._id+'/edit', title="edit") Редактировать
+                | &nbsp;
+                input(type="hidden", name="_method", value="DELETE")
+                button.btn.btn-danger(type="submit") Удалить
 
-            p.muted= formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
-                  form(action="/articles/"+article.id, method="post", onsubmit="return confirm('Are you sure?')")
-                    input(type='hidden', name='_csrf', value="#{csrf_token}")
-                    a.btn.btn-default(href='/articles/'+article._id+'/edit', title="edit") Редактировать
-                    | &nbsp;
-                    input(type="hidden", name="_method", value="DELETE")
-                    button.btn.btn-danger(type="submit") Удалить
+

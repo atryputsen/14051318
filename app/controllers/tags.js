@@ -23,7 +23,7 @@ exports.index = function (req, res) {
     if (err) return res.render('500');
     Article.count(criteria).exec(function (err, count) {
       res.render('articles/index', {
-        title: 'Articles tagged ' + req.param('tag'),
+        title: req.param('tag').toUpperCase(),
         articles: articles,
         page: page + 1,
         pages: Math.ceil(count / perPage)

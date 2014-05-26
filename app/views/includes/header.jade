@@ -1,4 +1,4 @@
-header.navbar-inverse.navbar-fixed-top(role='header')
+header.navbar.navbar-default.navbar-fixed-top(role='header')
     - if (req.isAuthenticated())
         .container-fluid
             .navbar-header
@@ -7,7 +7,7 @@ header.navbar-inverse.navbar-fixed-top(role='header')
                     span.icon-bar
                     span.icon-bar
                 a.navbar-brand(href='../') wBook
-            .navbar-inverse.side-collapse.in
+            .navbar-collapse.side-collapse.in
                 nav.navbar-collapse(role='navigation')
                     ul.nav.navbar-nav.pull-right
                         li.dropdown

@@ -24,7 +24,7 @@ module.exports = function (app, config, passport) {
   }));
 
   app.use(express.favicon());
-  app.use(express.static(config.root + '/public'));
+  app.use(express.static(config.root + '/resources'));
 
   // Logging
   // Use winston on production
