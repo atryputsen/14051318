@@ -29,7 +29,8 @@ header.navbar-inverse.navbar-fixed-top(role='header')
                     span.icon-bar
                     span.icon-bar
                 a.navbar-brand(href='/') wBook
-            .collapse.navbar-collapse
-                ul.nav.navbar-nav.navbar-right
-                    li: a(href='/signup') Зарегистрироваться
-                    li: a(href='/login') Войти
+            .collapse.navbar-collapse#bs-example-navbar-collapse-1
+                nav.navbar-collapse(role='navigation')
+                    ul.nav.navbar-nav.pull-right
+                        li: a(href='/signup') Зарегистрироваться
+                        li: a(href='/login') Войти
