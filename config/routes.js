@@ -11,6 +11,7 @@ var async = require('async');
 var users = require('../app/controllers/users'),
     auth = require('./middlewares/authorization'),
     articles = require('../app/controllers/articles'),
+    tags = require('../app/controllers/tags'),
     dashboard = require('../app/controllers/dashboard');
 
 /**
@@ -21,6 +22,8 @@ var articleAuth = [auth.requiresLogin, auth.article.hasAuthorization];
 
 /**
  * Expose routes
+ * @param app
+ * @param passport
  */
 
 module.exports = function (app, passport) {
@@ -28,7 +31,11 @@ module.exports = function (app, passport) {
     app.get('/', dashboard.index);
     app.get('/dashboard', dashboard.index);
 
-    // user routes
+    /**
+     * User Route
+     */
+    app.param('userId', users.user);
+
     app.get('/login', users.login);
     app.get('/signup', users.signup);
     app.get('/logout', users.logout);
@@ -36,13 +43,13 @@ module.exports = function (app, passport) {
     app.post('/users/session',
         passport.authenticate('local', {
             failureRedirect: '/login',
-            failureFlash: 'Invalid email or password.'
+            failureFlash: 'Введен неверный Email или Пароль.'
         }), users.session);
     app.get('/users/:userId', users.show);
 
-    app.param('userId', users.user);
-
-    // article routes
+    /**
+     * Article Route
+     */
     app.param('id', articles.load);
 
     app.get('/articles', articles.index);
@@ -53,8 +60,8 @@ module.exports = function (app, passport) {
     app.put('/articles/:id', articleAuth, articles.update);
     app.del('/articles/:id', articleAuth, articles.destroy);
 
-    // tag routes
-    var tags = require('../app/controllers/tags');
+    /**
+     * Tags Route
+     */
     app.get('/tags/:tag', tags.index);
-
 };
