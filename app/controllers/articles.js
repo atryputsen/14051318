@@ -11,10 +11,10 @@ var mongoose = require('mongoose'),
  * Load
  */
 
-exports.load = function(req, res, next, id) {
+exports.load = function(req, res, next, arcId) {
   var User = mongoose.model('User');
 
-  Article.load(id, function (err, article) {
+  Article.load(arcId, function (err, article) {
     if (err) return next(err);
     if (!article) return next(new Error('Не найдено'));
     req.article = article;
@@ -26,7 +26,7 @@ exports.load = function(req, res, next, id) {
  * List
  */
 
-exports.index = function(req, res){
+exports.read = function(req, res){
   var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
   var perPage = 30;
   var options = {
@@ -66,7 +66,7 @@ exports.create = function (req, res) {
   var article = new Article(req.body);
   article.user = req.user;
 
-  article.uploadAndSave(req.files.image, function (err) {
+  article.save(function (err) {
     if (!err) {
       req.flash('success', 'Материал опубликован!');
       return res.redirect('/articles/'+article._id)
@@ -99,7 +99,7 @@ exports.update = function(req, res){
   var article = req.article;
   article = extend(article, req.body);
 
-  article.uploadAndSave(req.files.image, function(err) {
+  article.save(req.files.image, function(err) {
     if (!err) {
       return res.redirect('/articles/' + article._id)
     }

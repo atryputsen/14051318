@@ -3,10 +3,8 @@
  */
 
 var mongoose = require('mongoose'),
-    Imager = require('imager'),
     env = process.env.NODE_ENV || 'development',
     config = require('../../config/config')[env],
-    imagerConfig = require(config.root + '/config/imager.js'),
     Schema = mongoose.Schema,
     utils = require('../../lib/utils');
 
@@ -55,10 +53,6 @@ var ArticleSchema = new Schema({
       get: getTags,
       set: setTags
   },
-  image: {
-    cdnUri: String,
-    files: []
-  },
   createdAt  : {
       type : Date,
       default : Date.now
@@ -68,64 +62,13 @@ var ArticleSchema = new Schema({
 /**
  * Validations
  */
-
 ArticleSchema.path('title').required(true, 'Название статьи не может быть пустым');
 ArticleSchema.path('description').required(true, 'Описание cтатьи не может быть пустым');
 ArticleSchema.path('body').required(true, 'Материал не может быть пустым');
 
 /**
- * Pre-remove hook
- */
-
-ArticleSchema.pre('remove', function (next) {
-  var imager = new Imager(imagerConfig, 'S3');
-  var files = this.image.files;
-
-  // if there are files associated with the item, remove from the cloud too
-  imager.remove(files, function (err) {
-    if (err) return next(err)
-  }, 'article');
-
-  next()
-});
-
-/**
- * Methods
- */
-
-ArticleSchema.methods = {
-
-  /**
-   * Save article and upload image
-   *
-   * @param {Object} images
-   * @param {Function} cb
-   * @api private
-   */
-
-  uploadAndSave: function (images, cb) {
-    if (!images || !images.length) return this.save(cb)
-
-    var imager = new Imager(imagerConfig, 'S3');
-    var self = this;
-
-    this.validate(function (err) {
-      if (err) return cb(err);
-      imager.upload(images, function (err, cdnUri, files) {
-        if (err) return cb(err);
-        if (files.length) {
-          self.image = { cdnUri : cdnUri, files : files }
-        }
-        self.save(cb)
-      }, 'article')
-    })
-  }
-};
-
-/**
  * Statics
  */
-
 ArticleSchema.statics = {
 
   /**
@@ -135,14 +78,12 @@ ArticleSchema.statics = {
    * @param {Function} cb
    * @api private
    */
-
-  load: function (id, cb) {
-    this.findOne({ _id : id })
+  load: function (arcId, cb) {
+    this.findOne({ _id : arcId })
       .populate('user', 'name email username')
       .populate('comments.user')
       .exec(cb)
   },
-
   /**
    * List articles
    *

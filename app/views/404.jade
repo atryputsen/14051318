@@ -1,9 +1,18 @@
 extends layouts/default
 
 block main
-  h1 Oops something went wrong
-  br
-  span 404
+    div.container
+        div.row
+            div.col-md-12
+                div.error-template
+                    h1
+                        | 404
+                    h2!= error
+                    div.error-details
+                        | Здесь была страница. Была, да сплыла.
+                    div.error-actions
+                        a.btn.btn-primary.btn-lg(href='/')
+                            span.glyphicon.glyphicon-home  Вернуться домой
 
 block content
   #error-message-box

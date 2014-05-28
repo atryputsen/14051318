@@ -1,0 +1,13 @@
+extends ../index
+
+block content
+    - if (parts.length)
+        div.stepwizard
+            div.stepwizard-row
+                - var i = 0;
+                - each part in parts
+                    - i++
+                    div.stepwizard-step
+                        button.btn.btn-default.btn-circle(type='button')= i
+                        p= part.title
+                        p= part.description

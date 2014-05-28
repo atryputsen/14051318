@@ -1,0 +1,19 @@
+extends ../index
+
+block content
+    - if (sections.length)
+        - each section in sections
+            div.col-xs-12.col-sm-6.col-lg-4
+                div.box
+                    div.icon
+                        div.image
+                            i.fa.fa-html5
+                        div.info
+                            h3.title= section.title
+                            p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
+                            div.more
+                                a(href='/tags/HTML%20&%20CSS', title='Title Link')
+                                    | Начать изучение
+                                    i.fa.fa-angle-double-right
+                    div.space
+    - else
