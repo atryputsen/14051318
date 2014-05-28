@@ -6,10 +6,9 @@ block main
             div.col-md-12
                 div.error-template
                     h1
-                        | Oops!
-                    h2!= error
-                    div.error-details
-                        | Sorry, an error has occured, Requested page not found!
+                        | Ебать, все легло! Ошибка: 500
+                    h2
+                    div.error-details!= error
                     div.error-actions
                         a.btn.btn-primary.btn-lg(href='http://www.jquery2dotnet.com')
                             span.glyphicon.glyphicon-home

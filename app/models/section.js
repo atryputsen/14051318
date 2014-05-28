@@ -16,7 +16,7 @@ var SectionSchema = new Schema({
         type: String,
         default: ''
     },
-    link: {
+    icon: {
         type: String,
         default: ''
     },
@@ -36,12 +36,16 @@ SectionSchema.path('description').required(true, 'Раздел должен им
  *  Static
  */
 SectionSchema.statics = {
+    load: function (secId, cb) {
+        this.findOne({ _id : secId })
+            .populate('user', 'name email username')
+            .populate('comments.user')
+            .exec(cb)
+    },
     /**
-     * List section
-     *
-     * @param {Object} options
-     * @param {Function} cb
-     * @api private
+     * List articles
+     * @param options
+     * @param cb
      */
 
     list: function (options, cb) {

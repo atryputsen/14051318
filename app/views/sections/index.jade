@@ -7,13 +7,18 @@ block content
                 div.box
                     div.icon
                         div.image
-                            i.fa.fa-html5
+                            - if (!section.icon)
+                                i.fa.fa-html5
+                            - else
+                                img(alt="section.title", src=section.icon, style="height: 40px; margin-top: -15px;")
                         div.info
                             h3.title= section.title
-                            p HTML - язык гипертектстовой разметки — это язык, используемый для описания и определения содержания веб-страницы. CSS - каскадные таблицы стилей используются для описания внешнего вида веб-страницы.
+                            p= section.description
                             div.more
-                                a(href='/tags/HTML%20&%20CSS', title='Title Link')
+                                a(href='/section/' + section.title, title=section.title)
                                     | Начать изучение
                                     i.fa.fa-angle-double-right
                     div.space
     - else
+        h4  Извините, но ни одного раздела нет
+            p It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.

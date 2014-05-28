@@ -1,62 +1,59 @@
 /**
  * Module dependencies.
  */
-
 var mongoose = require('mongoose'),
-    env = process.env.NODE_ENV || 'development',
-    config = require('../../config/config')[env],
-    Schema = mongoose.Schema,
-    utils = require('../../lib/utils');
+    Schema = mongoose.Schema;
 
 /**
  * Getters
  */
-
 var getTags = function (tags) {
-  return tags.join(',')
+    return tags.join(',')
 };
 
 /**
  * Setters
  */
-
 var setTags = function (tags) {
-  return tags.split(',')
+    return tags.split(',')
 };
 
 /**
  * Article Schema
  */
-
 var ArticleSchema = new Schema({
-  title: {
-      type : String,
-      default : '',
-      trim : true
-  },
-  description: {
-      type: String,
-      required: true,
-      maxLength: 300
-  },
-  body: {
-      type : String,
-      default : '',
-      trim : true
-  },
-  user: {
-      type : Schema.ObjectId,
-      ref : 'User'
-  },
-  tags: {
-      type: [],
-      get: getTags,
-      set: setTags
-  },
-  createdAt  : {
-      type : Date,
-      default : Date.now
-  }
+    title : {
+        type        : String,
+        trim        : true,
+        default     : ''
+    },
+    description : {
+        type        : String,
+        required    : true,
+        maxLength   : 300
+    },
+    body : {
+        type        : String,
+        default     : '',
+        trim        : true
+    },
+    section : {
+        type        : Schema.ObjectId,
+        ref         : 'Section'
+    },
+    user : {
+        type        : Schema.ObjectId,
+        ref         : 'User'
+    },
+    tags : {
+        type        : [],
+        get         : getTags,
+        set         : setTags
+    },
+    createdAt : {
+        type        : Date,
+        default     : Date.now
+    }
 });
 
 /**
@@ -70,38 +67,33 @@ ArticleSchema.path('body').required(true, 'Материал не может бы
  * Statics
  */
 ArticleSchema.statics = {
+    /**
+     * Find article by id
+     * @param arcId
+     * @param cb
+     */
+    load: function (arcId, cb) {
+        this.findOne({ _id : arcId })
+            .populate('user', 'name email username')
+            .populate('comments.user')
+            .exec(cb)
+    },
+    /**
+     * List articles
+     * @param options
+     * @param cb
+     */
 
-  /**
-   * Find article by id
-   *
-   * @param {ObjectId} id
-   * @param {Function} cb
-   * @api private
-   */
-  load: function (arcId, cb) {
-    this.findOne({ _id : arcId })
-      .populate('user', 'name email username')
-      .populate('comments.user')
-      .exec(cb)
-  },
-  /**
-   * List articles
-   *
-   * @param {Object} options
-   * @param {Function} cb
-   * @api private
-   */
+    list: function (options, cb) {
+        var criteria = options.criteria || {};
 
-  list: function (options, cb) {
-    var criteria = options.criteria || {};
-
-    this.find(criteria)
-      .populate('user', 'name username')
-      .sort({'createdAt': 1}) // sort by date
-      .limit(options.perPage)
-      .skip(options.perPage * options.page)
-      .exec(cb)
-  }
+        this.find(criteria)
+            .populate('user', 'name username')
+            .sort({'createdAt': 1}) // sort by date
+            .limit(options.perPage)
+            .skip(options.perPage * options.page)
+            .exec(cb)
+    }
 };
 
 mongoose.model('Article', ArticleSchema);
