@@ -99,7 +99,7 @@ exports.update = function(req, res){
   var article = req.article;
   article = extend(article, req.body);
 
-  article.save(req.files.image, function(err) {
+  article.save(function(err) {
     if (!err) {
       return res.redirect('/articles/' + article._id)
     }

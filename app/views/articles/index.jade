@@ -19,7 +19,7 @@ block content
                                         h4: a(href='/articles/'+article._id, title=article.title)= article.title
                                         p= article.description
                                     div.timeline-footer
-                                        a: i.glyphicon.glyphicon-thumbs-up
+                                        a #{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}
                                         a(href='/articles/'+article._id, title=article.title).pull-right Подробнее
                         - else
                             li.timeline-inverted
@@ -32,7 +32,7 @@ block content
                                         h4: a(href='/articles/'+article._id, title=article.title)= article.title
                                         p= article.description
                                     div.timeline-footer
-                                        a: i.glyphicon.glyphicon-thumbs-up
+                                        a #{formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")}
                                         a(href='/articles/'+article._id, title=article.title).pull-right Подробнее
                         - if (count === articles.length)
                             li.clearfix(style='float: none;')

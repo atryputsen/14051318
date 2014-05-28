@@ -34,12 +34,8 @@ var ArticleSchema = new Schema({
     },
     body : {
         type        : String,
-        default     : '',
-        trim        : true
-    },
-    section : {
-        type        : Schema.ObjectId,
-        ref         : 'Section'
+        trim        : true,
+        default     : ''
     },
     user : {
         type        : Schema.ObjectId,
