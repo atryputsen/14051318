@@ -1,0 +1,64 @@
+extends auth
+
+block form
+    .well.form-signup
+        div.panel.panel-default
+            div.panel-body
+                h3.thin.text-center= title
+                p.text-center.text-muted Мы рады видеть вас на проекте. Если вы уже зарегистрированы в системе, то вам нужно <a href="login">Авторизироваться</a>. Если вы впервые, то вы должны пройти процесс регистрации заполнив форму ниже.
+                hr
+                - var action = '/users'
+                - action += user.isNew? '' : '/' + user.id
+                form(action=action, method="post", role="form")
+                    input(type='hidden', name='_csrf', value="#{csrf_token}")
+                    - if (!user.isNew)
+                        input(type="hidden", name="_method", value="PUT")
+                    div.row.form-group
+                        .col-sm-12
+                            label(for="avatar") Аватар
+                            .input-group.image-preview
+                                input.form-control.image-preview-filename(type='text', name='avatar' disabled='disabled')
+                                span.input-group-btn
+                                    button.btn.btn-default.image-preview-clear(type='button', style='display:none;')
+                                        span.glyphicon.glyphicon-remove  Clear
+                                    .btn.btn-default.image-preview-input
+                                        span.glyphicon.glyphicon-folder-open
+                                        span.image-preview-input-title  Browse
+                                        input(type='file', accept='image/png, image/jpeg, image/gif', name='input-file-preview')
+
+                    div.row.form-group
+                        div.col-sm-6
+                            label(for="firstname") Ваше Имя <span class="text-danger">*</span>
+                            div(data-validate="length", data-length="3").input-group
+                                input#validate-text.form-control(type='text', name="firstname", placeholder='Имя', value=user.firstname, required)
+                                span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                        div.col-sm-6
+                            label Фамилия <span class="text-danger">*</span>
+                            div(data-validate="length", data-length="3").input-group
+                                input#validate-text.form-control(type='text', name="lastname", placeholder='Фамилия', value=user.lastname, required)
+                                span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.form-group
+                        label Номер группы: <span class="text-danger">*</span>
+                        div(data-validate="length", data-length="4").input-group
+                            input#validate-email.form-control(type='text', name="group", placeholder='Номер группы', value=user.group, required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.form-group
+                        label Роль:
+                        div.input-group
+                            select.form-control
+                                option(value='Student') Студент
+                                option(value='Professor') Профессор
+                    div.form-group
+                        label Email <span class="text-danger">*</span>
+                        div(data-validate="email").input-group
+                            input#validate-email.form-control(type='email', name="email", placeholder='Email', value=user.email, required)
+                            span.input-group-addon.danger: span.glyphicon.glyphicon-remove
+                    div.row.form-group
+                    hr
+                    div.row
+                        div.col-lg-6
+                            label.checkbox
+                                input(type="checkbox")
+                                | Согласен с <a href="page_terms.html">правилами</a>
+                        div.col-lg-6.text-right
+                            button.btn.btn-action(type='submit', disabled) Сохранить изменения

@@ -69,7 +69,7 @@ exports.create = function (req, res) {
     section.save(function (err) {
         if (!err) {
             req.flash('success', 'Материал опубликован!');
-            return res.redirect('/sections/' + section._id)
+            return res.redirect('/')
         }
 
         res.render('articles/new', {
@@ -101,7 +101,7 @@ exports.update = function(req, res){
 
     section.save(function(err) {
         if (!err) {
-            return res.redirect('/sections/' + section._id)
+            return res.redirect('/')
         }
 
         res.render('articles/edit', {

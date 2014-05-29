@@ -107,3 +107,33 @@ exports.user = function (req, res, next, id) {
       next()
     })
 };
+
+/**
+ *  User Settings
+ */
+exports.edit = function (req, res) {
+    res.render('users/edit', {
+        title: 'Настройки ' + req.user.title,
+        user: req.user
+    })
+};
+
+/**
+* User Update
+*/
+exports.update = function(req, res){
+    var user = req.user;
+    user = extend(user, req.body);
+
+    user.save(function(err) {
+        if (!err) {
+            return res.redirect('/users/' + user._id)
+        }
+
+        res.render('users/edit', {
+            title: 'Редактирование материала',
+            user: user,
+            error: utils.errors(err.errors || err)
+        })
+    })
+};

@@ -37,6 +37,8 @@ module.exports = function (app, passport) {
             failureFlash: 'Введен неверный Email или Пароль.'
         }), users.session);
     app.get('/users/:userId',       users.show);
+    app.get('/users/:userId/edit',   users.edit);
+    app.put('/users/:userId',       users.update);
 
 
     /**
@@ -47,9 +49,9 @@ module.exports = function (app, passport) {
     app.get('/sections',            sections.read);
     app.get('/sections/new',        sections.new);
     app.post('/sections',           sections.create);
-    app.get('/:secId/edit',         sections.edit);
-    app.put('/:secId',              sections.update);
-    app.del('/:secId',              sections.destroy);
+    app.get('/section/:secId/edit', sections.edit);
+    app.put('/section/:secId',      sections.update);
+    app.del('/section/:secId',      sections.destroy);
 
     /**
      * Articles Route

@@ -18,7 +18,8 @@ header.navbar.navbar-default.navbar-fixed-top(role='header')
                         li.dropdown
                             a(href="#", data-toggle="dropdown").dropdown-toggle Профиль
                             ul.dropdown-menu
-                                li: a(href="/users/"+req.user.id) Профиль
+                                li: a(href="/users/" + req.user.id) Профиль
+                                li: a(href="/users/" + req.user.id + "/edit") Настройки
                                 li: a(href="/logout") Выйти
 
     - else

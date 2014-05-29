@@ -7,9 +7,7 @@ block content
           p!=article.body
           blockquote.blockquote-reverse
             - if (article.user)
-              p Автор:&nbsp;
-                a(href="/users/"+article.user._id)= article.user.firstname + ' ' + article.user.lastname + ', '
-                span.muted= formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
+                date.muted= formatDate(article.createdAt, "%b %d, %Y at %I:%M %p")
             - if (article.tags)
               p Теги:&nbsp;
                 - each tag in article.tags.split(',')
@@ -22,5 +20,3 @@ block content
                 | &nbsp;
                 input(type="hidden", name="_method", value="DELETE")
                 button.btn.btn-danger(type="submit") Удалить
-
-
