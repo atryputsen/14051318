@@ -37,9 +37,8 @@ module.exports = function (app, passport) {
             failureFlash: 'Введен неверный Email или Пароль.'
         }), users.session);
     app.get('/users/:userId',       users.show);
-    app.get('/users/:userId/edit',   users.edit);
-    app.put('/users/:userId',       users.update);
-
+    app.get('/settings',            users.edit);
+    app.put('/settings/:userId',    users.update);
 
     /**
      * Sections Route

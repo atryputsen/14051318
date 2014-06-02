@@ -53,7 +53,7 @@ SectionSchema.statics = {
 
         this.find(criteria)
             .populate('user', 'name username')
-            .sort({'createdAt': 1}) // sort by date
+            .sort({'createdAt': 1})
             .limit(options.perPage)
             .skip(options.perPage * options.page)
             .exec(cb)

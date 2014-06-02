@@ -21,6 +21,7 @@ header.navbar.navbar-default.navbar-fixed-top(role='header')
                             i.glyphicon.glyphicon-th
                         ul.dropdown-menu
                             li: a(href="/users/" + req.user.id): i.glyphicon.glyphicon-user &nbsp; Профиль
+                            li: a(href="/settings"): i.glyphicon.glyphicon-cog &nbsp; Настройки
                             li.divider
                             li: a(href="/logout"): i.glyphicon.glyphicon-off &nbsp; Выйти
 

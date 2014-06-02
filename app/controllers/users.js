@@ -127,7 +127,7 @@ exports.update = function(req, res){
 
     user.save(function(err) {
         if (!err) {
-            return res.redirect('/users/' + user._id)
+            return res.redirect('/settings/' + user._id)
         }
 
         res.render('users/edit', {
