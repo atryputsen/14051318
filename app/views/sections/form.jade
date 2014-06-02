@@ -12,17 +12,17 @@ block content
                 .form-group
                     label(for="icon") Иконка
                     .input-group.image-preview
-                        input.form-control.image-preview-filename(type='text', name="icon", value=section.icon, placeholder='Enter the code icon', disabled='disabled')= section.icon
+                        input.form-control.image-preview-filename(type='text', name="icon", value=section.icon, placeholder='Выбирите иконку', disabled='disabled')= section.icon
                         span.input-group-btn
                             button.btn.btn-default.image-preview-clear(type='button', style='display:none;')
-                                span.glyphicon.glyphicon-remove  Clear
+                                span.glyphicon.glyphicon-remove  Отмена
                             .btn.btn-default.image-preview-input
                                 span.glyphicon.glyphicon-folder-open
-                                span.image-preview-input-title  Browse
+                                span.image-preview-input-title  Выбрать
                                 input(type='file', accept='image/png, image/jpeg, image/gif', name='input-file-preview')
                 .form-group
                     label(for="title") Заголовок
-                    input.form-control#title(type='text', name="title", value=section.title, placeholder='Enter the title')=section.title
+                    input.form-control#title(type='text', name="title", value=section.title, placeholder='Заголовок')=section.title
                 .form-group
                     label(for="desctipyion") Краткое описание
                     textarea.form-control(name="description", placeholder="Краткое описание материала", style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;")=section.description

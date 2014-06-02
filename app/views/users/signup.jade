@@ -43,10 +43,10 @@ block form
                                 span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                     hr
                     div.row
-                        div.col-lg-6
-                            label.checkbox
-                                input(type="checkbox")
-                                | Согласен с <a href="page_terms.html">правилами</a>
-                        div.col-lg-6.text-right
+                        //div.col-lg-6
+                        //    label.checkbox
+                        //        input(type="checkbox")
+                        //        | Согласен с <a href="page_terms.html">правилами</a>
+                        div.col-lg-12.text-right
                             button.btn.btn-action(type='submit', disabled) Зарегистрироваться
                             input(type='hidden', name='_csrf', value="#{csrf_token}")

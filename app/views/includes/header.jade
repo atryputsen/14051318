@@ -2,25 +2,27 @@ header.navbar.navbar-default.navbar-fixed-top(role='header')
     - if (req.isAuthenticated())
         .container-fluid
             .navbar-header
-                button.navbar-toggle(data-toggle='collapse-side', data-target='.side-collapse', data-target-2='.side-collapse-container', type='button')
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                    span.sr-only Toggle navigation
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href='../') wBook
-            .navbar-collapse.side-collapse.in
-                nav.navbar-collapse(role='navigation')
-                    ul.nav.navbar-nav.pull-right
-                        li.dropdown
-                            a(href='#', data-toggle='dropdown').dropdown-toggle Управление материалом
-                            ul.dropdown-menu
-                                li: a(href="/articles/new") Новая статья
-                                li: a(href="/sections/new") Новый раздел
-                        li.dropdown
-                            a(href="#", data-toggle="dropdown").dropdown-toggle Профиль
-                            ul.dropdown-menu
-                                li: a(href="/users/" + req.user.id) Профиль
-                                li: a(href="/users/" + req.user.id + "/edit") Настройки
-                                li: a(href="/logout") Выйти
+                a.navbar-brand(href='/') wBook
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav.navbar-right
+                    li: a(href="/articles/new")
+                        i.glyphicon.glyphicon-edit
+                        | &nbsp; Новая статья
+                    li: a(href="/sections/new")
+                        i.glyphicon.glyphicon-book
+                        | &nbsp; Новый раздел
+                    li.dropdown
+                        a.dropdown-toggle(href='#', data-toggle='dropdown')
+                            i.glyphicon.glyphicon-th
+                        ul.dropdown-menu
+                            li: a(href="/users/" + req.user.id): i.glyphicon.glyphicon-user &nbsp; Профиль
+                            li.divider
+                            li: a(href="/logout"): i.glyphicon.glyphicon-off &nbsp; Выйти
 
     - else
         .container

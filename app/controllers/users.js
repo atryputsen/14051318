@@ -113,7 +113,7 @@ exports.user = function (req, res, next, id) {
  */
 exports.edit = function (req, res) {
     res.render('users/edit', {
-        title: 'Настройки ' + req.user.title,
+        title: 'Настройки',
         user: req.user
     })
 };

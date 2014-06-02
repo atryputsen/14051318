@@ -6,13 +6,12 @@ block main
             div.col-md-12
                 div.error-template
                     h1
-                        | Ебать, все легло! Ошибка: 500
+                        | Ошибка 500
                     h2
                     div.error-details!= error
                     div.error-actions
                         a.btn.btn-primary.btn-lg(href='/')
-                            span.glyphicon.glyphicon-home
-                            | Вернуться обратно
+                            span.glyphicon.glyphicon-home  Вернуться обратно
 
 block content
   pre= error

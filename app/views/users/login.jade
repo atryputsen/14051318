@@ -5,7 +5,7 @@ block form
           div.panel.panel-default
             div.panel-body
                 h3.thin.text-center Авторизация
-                p.text-center.text-muted Lorem ipsum dolor sit amet, <a href="signup">Register</a> adipisicing elit. Quo nulla quibusdam cum doloremque incidunt nemo sunt a tenetur omnis odio.
+                p.text-center.text-muted Мы рады видеть Вас! Пожалуйста авторизируйтесь в системе. Если Вы впервые на нашем проекте, то вы должны пройти процесс <a href="/signup">регистрации</a>.
                 hr
 
                 form(action="/users/session", method="post", role="form")
@@ -21,9 +21,9 @@ block form
                             span.input-group-addon.danger: span.glyphicon.glyphicon-remove
                     hr
                     div.row
-                        div.col-lg-8
-                            b: a(href="#") Забыли пароль?
-                        div.col-lg-4.text-right
+                        //div.col-lg-8
+                        //    b: a(href="#") Забыли пароль?
+                        div.col-lg-12.text-right
                             button(type="submit", disabled).btn.btn-action Войти
                             input(type='hidden', name='_csrf', value="#{csrf_token}")
                             .col-sm-offset-2.error= message

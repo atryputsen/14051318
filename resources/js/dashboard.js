@@ -1,17 +1,7 @@
 $(function() {
     "use strict";
 
-    $(".textarea").wysihtml5(); // WYSIHTML5
-});
-
-$(document).ready(function() {
-    var sideslider = $('[data-toggle=collapse-side]');
-    var sel = sideslider.attr('data-target');
-    var sel2 = sideslider.attr('data-target-2');
-    sideslider.click(function(event){
-        $(sel).toggleClass('in');
-        $(sel2).toggleClass('out');
-    });
+    $(".textarea").wysihtml5();
 });
 
 function closePreview(){
@@ -27,7 +17,6 @@ $(document).ready(function(){
     });
     closebtn.attr("class","close pull-right");
     closebtn.attr("onclick","closePreview();");
-    // Set the popover default content
     $('.image-preview').popover({
         trigger:'manual',
         html:true,
@@ -35,7 +24,6 @@ $(document).ready(function(){
         content: 'Loading...',
         placement:'bottom'
     });
-    // Set the clear onclick function
     $('.image-preview-clear').click(function(){
         $('.image-preview').popover('hide');
         $('.image-preview-filename').val("");
