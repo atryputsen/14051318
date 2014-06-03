@@ -9,7 +9,7 @@ block form
                 hr
                 - var action = '/users'
                 - action += user.isNew? '' : '/' + user.id
-                form(action=action, method="post", role="form")
+                form(action=action, method="post", role="form", enctype="multipart/form-data")
                     input(type='hidden', name='_csrf', value="#{csrf_token}")
                     - if (!user.isNew)
                         input(type="hidden", name="_method", value="PUT")
@@ -61,4 +61,4 @@ block form
                                 input(type="checkbox")
                                 | Согласен с <a href="page_terms.html">правилами</a>
                         div.col-lg-6.text-right
-                            button.btn.btn-action(type='submit', disabled) Сохранить изменения
+                            button.btn.btn-action(type='submit') Сохранить изменения

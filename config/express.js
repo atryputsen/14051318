@@ -58,7 +58,11 @@ module.exports = function (app, config, passport) {
     app.use(express.cookieParser());
 
     // bodyParser should be above methodOverride
-    app.use(express.bodyParser());
+    app.use(express.bodyParser({
+        uploadDir: './resources/uploads',
+        keepExtensions: true
+    }))
+    app.use(express.limit('5mb'));
     app.use(express.methodOverride());
 
     // express/mongo session storage

@@ -4,7 +4,8 @@
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    utils = require('../../lib/utils');
+    utils = require('../../lib/utils'),
+    extend = require('util')._extend;;
 
 var login = function (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/';
@@ -124,7 +125,7 @@ exports.edit = function (req, res) {
 exports.update = function(req, res){
     var user = req.user;
     user = extend(user, req.body);
-
+    user.avatar = req.files['input-file-preview'].path.replace(/\\/g, '/').replace('resources', '');
     user.save(function(err) {
         if (!err) {
             return res.redirect('/users/' + user._id)
